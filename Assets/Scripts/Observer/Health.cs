@@ -21,6 +21,16 @@ public class Health : MonoBehaviour
         StartCoroutine(TakeHit());
     }
 
+    private void OnEnable()
+    {
+        GetComponent<Level>().onLevelUp += ResetHealth;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<Level>().onLevelUp -= ResetHealth;
+    }
+
     // Update is called once per frame
     IEnumerator TakeHit()
     {
@@ -31,7 +41,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void ResetHealth()
+    void ResetHealth()
     {
         currentHealh = maxHealth;
     }
