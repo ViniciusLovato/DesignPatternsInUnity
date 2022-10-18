@@ -56,3 +56,4 @@ public class Level : MonoBehaviour
         return currentExperience / experiencePerLevel;
     }
 }
+
