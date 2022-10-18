@@ -1,15 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MVP
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private float fullHealh = 100f;
+        [SerializeField] private float fullHealth = 100f;
         [SerializeField] private float drainPerSecond = 2f;
-        [SerializeField] private GameObject healthBar;
         private float currentHealth;
+
+        public event Action OnHealthChange;
         
         // Start is called before the first frame update
 
@@ -21,12 +22,12 @@ namespace MVP
         
         private void OnEnable()
         {
-            GetComponent<Level>().onLevelUpAction += ResetHealth;
+            GetComponent<Level>().OnLevelUpAction += ResetHealth;
         }
 
         private void OnDisable()
         {
-            GetComponent<Level>().onLevelUpAction -= ResetHealth;
+            GetComponent<Level>().OnLevelUpAction -= ResetHealth;
         }
 
         private IEnumerator HealthDrain()
@@ -34,14 +35,16 @@ namespace MVP
             while (currentHealth > 0)
             {
                 currentHealth -= drainPerSecond;
-                UpdateUI();
+                OnHealthChange?.Invoke();
+                
                 yield return new WaitForSeconds(1);
             }
         }
         
         void ResetHealth()
         {
-            currentHealth = fullHealh;
+            currentHealth = fullHealth;
+            OnHealthChange?.Invoke();
         }
 
         public float GetHealth()
@@ -49,10 +52,9 @@ namespace MVP
             return currentHealth;
         }
 
-        private void UpdateUI()
+        public float GetFullHealth()
         {
-            // This is just for demonstration purposes
-            healthBar.GetComponent<Slider>().value = currentHealth / fullHealh;
+            return fullHealth;
         }
     }
 }

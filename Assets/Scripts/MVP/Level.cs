@@ -1,43 +1,26 @@
 using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace MVP
 {
    public class Level : MonoBehaviour
    {
        [SerializeField] int experiencePerLevel = 200;
-       [SerializeField] UnityEvent onLevelUp;
-       [SerializeField] private TextMeshProUGUI displayText;
-       [SerializeField] private TextMeshProUGUI experienceText;
-       [SerializeField] private Button increaseXPButton;
        private int experiencePoints = 0;
 
-       public event Action onLevelUpAction;
+       public event Action OnLevelUpAction;
+       public event Action OnExperienceChange;
  
-       void Start()
-       {
-           UpdateUI();
-           increaseXPButton.onClick.AddListener(() => GainExperience(10));
-       }
-
-       private void UpdateUI()
-       {
-           displayText.text = $"Level: {GetLevel()}";
-           experienceText.text = $"Experience: {GetExperience()}";
-       }
-
-       private void GainExperience(int exp)
+       public void GainExperience(int exp)
        {
            var level = GetLevel();
            experiencePoints += exp;
-           UpdateUI();
+
+           OnExperienceChange?.Invoke();
+           
            if (GetLevel() > level)
            {
-               onLevelUp.Invoke();
-               onLevelUpAction?.Invoke();
+               OnLevelUpAction?.Invoke();
            }
        }
        

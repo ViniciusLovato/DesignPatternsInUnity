@@ -827,24 +827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experiencePerLevel: 200
-  onLevelUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2006647704}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  displayText: {fileID: 965286049}
-  experienceText: {fileID: 885238253}
-  increaseXPButton: {fileID: 996243436}
 --- !u!114 &976175335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,9 +839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2048112ecc564158bef8f7baf770312b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealh: 100
+  fullHealth: 100
   drainPerSecond: 2
-  healthBar: {fileID: 1304487086}
 --- !u!1 &996243434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1233,8 @@ GameObject:
   - component: {fileID: 1393740713}
   - component: {fileID: 1393740712}
   - component: {fileID: 1393740711}
+  - component: {fileID: 1393740714}
+  - component: {fileID: 1393740715}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1344,6 +1327,36 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1393740714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393740709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8e5d29249c491782c969091dae8c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 976175333}
+  displayText: {fileID: 965286049}
+  experienceText: {fileID: 885238253}
+  increaseXpButton: {fileID: 996243436}
+--- !u!114 &1393740715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393740709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a63133483bc4d76822d19a4803a15ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 976175335}
+  healthBar: {fileID: 1304487086}
 --- !u!1 &2006647702
 GameObject:
   m_ObjectHideFlags: 0
